@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block tile %} tweet{% endblock  %}
+{% block content %}
+<h1 class='text-center text-white'>welcome to my tweet section </h1>
+<a class="btn btn-primary" href="{% url "tweet_create" %}">create new tweet</a>
+<div class="container row gap-3"></div>
+{% for tweet in tweets %}
+<div class="card" style="width: 18rem;">
+    <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{tweet.user.username}}</h5>
+      <p class="card-text">{{tweet.text}}</p>
+      <a href="{% url "tweet_edit"  tweet.id%}" class="btn btn-primary">EDIT</a>
+      <a href="{% url "tweet_delete"  tweet.id%}" class="btn btn-primary">DELETE</a>
+
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}
